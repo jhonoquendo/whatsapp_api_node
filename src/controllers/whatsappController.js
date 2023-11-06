@@ -26,12 +26,13 @@ const receivedMessage = (req, res) => {
         let value = changes["value"];
         let messageObject = value["message"];
 
-        myConsole(messageObject);
+        //myConsole(messageObject);
 
         res.send("EVENT_RECEIVED");
 
     } catch (error) {
-        myConsole(error);
+        console.log("pasa por aca");
+        //myConsole({error});
         res.send("EVENT_RECEIVED");
     }
 }

@@ -1,4 +1,5 @@
 node_modules
+logs.txt
 
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend

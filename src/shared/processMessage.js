@@ -35,6 +35,16 @@ const process = (text, number) => {
         let model = whatsappModels.messageText("Registrate en este formulario: www.google.com", number);
         models.push(model);
 
+    }else if(text.includes("agencia")){
+        //vender
+        let model = whatsappModels.messageLocation(number);
+        models.push(model);
+
+    }else if(text.includes("contacto")){
+        //vender
+        let model = whatsappModels.messageText("**Centro de contacto: ** \n 923952932", number);
+        models.push(model);
+
     }else{
         //no entiende
         let model = whatsappModels.messageText("No entiendo.", number);

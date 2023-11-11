@@ -103,8 +103,26 @@ const messageComprar= (number) => {
     return data;
 }
 
+const messageLocation = (number) => {
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to":number,
+        "recipient_type": "individual",
+        "type":"location",
+        "location":{
+            "latitude": "-12.067192214569396",
+            "longitude": "-77.03340583080525",
+            "name": "Estadio nacional de Perú",
+            "address": "C. José Díaz s/n, Lima 15046"
+        }
+    });
+
+    return data;
+}
+
 module.exports = {
     messageText,
     messageList,
-    messageComprar
+    messageComprar,
+    messageLocation
 }

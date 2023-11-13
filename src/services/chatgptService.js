@@ -2,7 +2,7 @@ const  OpenAIApi = require("openai");
 
 const getMessageChatGPT = async (text) => {
     const openai = new OpenAIApi({
-        apiKey: "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"
+        apiKey: process.env.CHATGPT_API_KEY
     });
 
     const completion = await openai.chat.completions.create({

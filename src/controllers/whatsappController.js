@@ -1,5 +1,5 @@
-// const fs = require("fs");
-// const myConsole = new console.Console(fs.createWriteStream("./logs.txt"));
+const fs = require("fs");
+const myConsole = new console.Console(fs.createWriteStream("./logs.txt"));
 
 const processMessage = require("../shared/processMessage");
 
@@ -43,7 +43,7 @@ const receivedMessage =  async (req, res) => {
 
     } catch (error) {
         console.log("pasa por aca");
-        //myConsole.log({error});
+        myConsole.log({error});
         res.send("EVENT_RECEIVED MAL");
     }
 }
@@ -62,11 +62,11 @@ const getTextUser = (messages) => {
         }else if(typeInteractive == "list_reply"){
             text = interactiveObject["list_reply"]["title"];
         }else{
-            //myConsole.log("sin mensaje");
+            myConsole.log("sin mensaje");
         }
 
     }else{
-        //myConsole.log("sin mensaje");
+        myConsole.log("sin mensaje");
     }
 
     return text;

@@ -1,56 +1,28 @@
 const whatsappModels = require("../shared/whatsappModels");
 const whatsappService = require("../services/whatsappService");
 
-const process = (text, number) => {
+const chatGPTService = require("../services/chatgptService");
+
+const process = async (text, number) => {
     text = text.toLowerCase();
     let models = [];
 
-    if(text.includes("hola")){
-        //saludar
-        let model = whatsappModels.messageText("Hola un gusto saludarte.", number);
-        models.push(model);
+    //#region sin chatgpt
+    
+    //#region con chatgpt
 
-        let modelList = whatsappModels.messageList(number);
-        models.push(modelList);
+    const resultChatGpt = await chatGPTService.getMessageChatGPT(text);
 
-    }else if(text.includes("gracias")){
-        //agradecer
-        let model = whatsappModels.messageText("Gracias a ti por escribirme", number);
+    if(resultChatGpt!=null){
+        let model = whatsappModels.messageText(resultChatGpt, number);
         models.push(model);
-
-    }else if(text.includes("adios") || 
-             text.includes("adiós") ||
-             text.includes("bye") ||
-             text.includes("me voy")){
-                //despedir
-        let model = whatsappModels.messageText("Ve con cuidado.", number);
-        models.push(model);
-    }else if(text.includes("comprar")){
-        //comprar
-        let model = whatsappModels.messageComprar(number);
-        models.push(model);
-
-    }else if(text.includes("vender")){
-        //vender
-        let model = whatsappModels.messageText("Registrate en este formulario: www.google.com", number);
-        models.push(model);
-
-    }else if(text.includes("agencia")){
-        //vender
-        let model = whatsappModels.messageLocation(number);
-        models.push(model);
-
-    }else if(text.includes("contacto")){
-        //vender
-        let model = whatsappModels.messageText("**Centro de contacto: ** \n 923952932", number);
-        models.push(model);
-
     }else{
-        //no entiende
-        let model = whatsappModels.messageText("No entiendo.", number);
+        let model = whatsappModels.messageText("Lo siento algo salio mal, intentalo mas tarde", number);
         models.push(model);
     }
 
+
+    //#endregion
     models.forEach(model => {
         whatsappService.sendMessageWhatsapp(model);
     });
